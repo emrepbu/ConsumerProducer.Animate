@@ -3,7 +3,7 @@ import random
 
 
 class ProducerConsumerBase(Scene):
-    """Üretici-Tüketici animasyonu için temel sınıf"""
+    """Base class for Producer-Consumer animation"""
     
     def __init__(self, language="en", **kwargs):
         super().__init__(**kwargs)
@@ -11,7 +11,7 @@ class ProducerConsumerBase(Scene):
         self.setup_translations()
     
     def setup_translations(self):
-        """Dil çevirilerini ayarla"""
+        """Set up text translations based on language"""
         if self.language == "tr":
             self.texts = {
                 "title": "Üretici-Tüketici Problemi",
@@ -46,13 +46,13 @@ class ProducerConsumerBase(Scene):
             }
     
     def construct(self):
-        # Arka plan rengi
+        # Set background color
         self.camera.background_color = "#1a1a1a"
         
-        # Başlık
+        # Main title
         title = Text(self.texts["title"], font_size=48, weight=BOLD, color=WHITE).to_edge(UP, buff=0.3)
         
-        # Dil göstergesi - sağ üst köşe
+        # Language indicator - top right corner
         lang_text = "TR | Türkçe" if self.language == "tr" else "EN | English"
         lang_indicator = Text(
             lang_text, 
@@ -78,10 +78,10 @@ class ProducerConsumerBase(Scene):
         )
         self.wait(0.5)
         
-        # Ana bileşenler için merkez y konumu
+        # Center Y position for main components
         main_y = 0.8
         
-        # Üretici kutusu - SOL
+        # Producer box - LEFT
         producer_box = RoundedRectangle(
             corner_radius=0.15, 
             width=3, 
@@ -95,7 +95,7 @@ class ProducerConsumerBase(Scene):
         producer_group = VGroup(producer_text, producer_box).arrange(DOWN, buff=0.2)
         producer_group.move_to(LEFT * 4.5 + UP * main_y)
         
-        # Tampon kutusu - ORTA
+        # Buffer box - CENTER
         buffer_box = RoundedRectangle(
             corner_radius=0.15,
             width=3.5, 
@@ -109,13 +109,13 @@ class ProducerConsumerBase(Scene):
         buffer_size_text = Text(self.texts["buffer_size"].format(5), font_size=20, color=GRAY_B)
         buffer_current_text = Text(self.texts["current_size"].format(0), font_size=24, color=YELLOW, weight=BOLD)
         
-        # Tampon bilgileri kutu dışında
+        # Buffer info outside the box
         buffer_info = VGroup(buffer_size_text, buffer_current_text).arrange(DOWN, buff=0.1)
         buffer_group = VGroup(buffer_text, buffer_box).arrange(DOWN, buff=0.2)
         buffer_group.move_to(UP * main_y)
         buffer_info.next_to(buffer_box, DOWN, buff=0.2)
         
-        # Tüketici kutusu - SAĞ
+        # Consumer box - RIGHT
         consumer_box = RoundedRectangle(
             corner_radius=0.15,
             width=3, 
@@ -129,7 +129,7 @@ class ProducerConsumerBase(Scene):
         consumer_group = VGroup(consumer_text, consumer_box).arrange(DOWN, buff=0.2)
         consumer_group.move_to(RIGHT * 4.5 + UP * main_y)
         
-        # Elemanları yerleştir
+        # Position all elements
         self.play(
             Create(producer_group),
             Create(buffer_group),
@@ -139,7 +139,7 @@ class ProducerConsumerBase(Scene):
         )
         self.wait(0.5)
         
-        # Oklar - kutulardan biraz aşağıda
+        # Arrows - slightly below the boxes
         arrow_y_offset = -0.3
         arrow_p_to_b = Arrow(
             producer_box.get_right() + UP * arrow_y_offset, 
@@ -162,8 +162,8 @@ class ProducerConsumerBase(Scene):
         
         self.play(Create(arrow_p_to_b), Create(arrow_b_to_c))
         
-        # Algoritma açıklamaları - ALT KISIM
-        # Üretici algoritması
+        # Algorithm descriptions - BOTTOM SECTION
+        # Producer algorithm
         producer_algo_title = Tex(self.texts["producer_alg"], font_size=20, color=BLUE)
         producer_algo_code = MathTex(
             r"\begin{array}{l}" + 
@@ -184,7 +184,7 @@ class ProducerConsumerBase(Scene):
         producer_algo = VGroup(producer_algo_title, producer_algo_code).arrange(DOWN, buff=0.15)
         producer_algo.move_to(LEFT * 4 + DOWN * 2.8)
         
-        # Tüketici algoritması
+        # Consumer algorithm
         consumer_algo_title = Tex(self.texts["consumer_alg"], font_size=20, color=RED)
         consumer_algo_code = MathTex(
             r"\begin{array}{l}" +
@@ -212,20 +212,20 @@ class ProducerConsumerBase(Scene):
         )
         self.wait(1)
         
-        # Simülasyon durumu
+        # Simulation state
         buffer_items = []
         max_buffer_size = 5
         
-        # Durum metinleri - kutunun üstünde
+        # Status texts - above the boxes
         producer_status = Text(self.texts["producing"], color=BLUE, font_size=28, weight=BOLD)
         producer_status.next_to(producer_group, UP, buff=0.3)
         
         consumer_status = Text(self.texts["waiting"], color=RED, font_size=28, weight=BOLD)
         consumer_status.next_to(consumer_group, UP, buff=0.3)
         
-        # Simülasyonu çalıştır
+        # Run the simulation
         for cycle in range(8):
-            # Döngü sayacı - ortada, algoritmaların üstünde
+            # Cycle counter - center, above algorithms
             cycle_text = Text(
                 self.texts["cycle"].format(cycle + 1), 
                 font_size=28, 
@@ -235,11 +235,11 @@ class ProducerConsumerBase(Scene):
             cycle_text.move_to(DOWN * 3.1)
             self.play(Write(cycle_text), run_time=0.5)
             
-            # Üretici üretir
+            # Producer produces
             if len(buffer_items) < max_buffer_size:
                 self.play(Write(producer_status), run_time=0.5)
                 
-                # Veri öğesi oluştur
+                # Create data item
                 data_value = random.randint(1, 99)
                 data_item = Circle(radius=0.25, color=BLUE_C, fill_opacity=0.8, stroke_width=2)
                 data_text = Text(str(data_value), font_size=20, color=WHITE, weight=BOLD)
@@ -249,14 +249,14 @@ class ProducerConsumerBase(Scene):
                 
                 self.play(Create(data_group), run_time=0.4)
                 
-                # Tampona taşı - düzgün pozisyonlama
-                rows = 2  # 2 satır
-                cols = 3  # 3 sütun
+                # Move to buffer - proper positioning
+                rows = 2  # 2 rows
+                cols = 3  # 3 columns
                 index = len(buffer_items)
                 row = index // cols
                 col = index % cols
                 
-                # Buffer içinde grid pozisyonu
+                # Grid position inside buffer
                 x_offset = (col - 1) * 0.7  # -0.7, 0, 0.7
                 y_offset = (0.5 - row) * 0.7  # 0.5, -0.2
                 
@@ -264,7 +264,7 @@ class ProducerConsumerBase(Scene):
                 self.play(data_group.animate.move_to(target_pos), run_time=0.6)
                 buffer_items.append(data_group)
                 
-                # Tampon sayısını güncelle
+                # Update buffer count
                 new_count_text = Text(
                     self.texts["current_size"].format(len(buffer_items)), 
                     font_size=24, 
@@ -276,25 +276,25 @@ class ProducerConsumerBase(Scene):
                 
                 self.play(FadeOut(producer_status), run_time=0.3)
             else:
-                # Tampon dolu
+                # Buffer is full
                 wait_text = Text(self.texts["waiting"], color=ORANGE, font_size=28, weight=BOLD)
                 wait_text.next_to(producer_group, UP, buff=0.3)
                 self.play(Write(wait_text), run_time=0.5)
                 self.wait(0.5)
                 self.play(FadeOut(wait_text), run_time=0.3)
             
-            # Tüketici tüketir
+            # Consumer consumes
             if len(buffer_items) > 0 and cycle % 2 == 1:
                 consumer_status_active = Text(self.texts["consuming"], color=RED, font_size=28, weight=BOLD)
                 consumer_status_active.next_to(consumer_group, UP, buff=0.3)
                 self.play(Write(consumer_status_active), run_time=0.5)
                 
-                # Tampondan al
+                # Take from buffer
                 data_to_consume = buffer_items.pop(0)
                 self.play(data_to_consume.animate.move_to(consumer_box.get_center()), run_time=0.6)
                 self.play(FadeOut(data_to_consume), run_time=0.4)
                 
-                # Kalan öğeleri yeniden düzenle
+                # Rearrange remaining items
                 for i, item in enumerate(buffer_items):
                     row = i // cols
                     col = i % cols
@@ -303,7 +303,7 @@ class ProducerConsumerBase(Scene):
                     new_pos = buffer_box.get_center() + RIGHT * x_offset + UP * y_offset
                     self.play(item.animate.move_to(new_pos), run_time=0.3)
                 
-                # Tampon sayısını güncelle
+                # Update buffer count
                 new_count_text = Text(
                     self.texts["current_size"].format(len(buffer_items)), 
                     font_size=24, 
@@ -318,7 +318,7 @@ class ProducerConsumerBase(Scene):
             self.play(FadeOut(cycle_text), run_time=0.3)
             self.wait(0.3)
         
-        # Animasyonu bitir
+        # End animation
         end_text = Text(
             self.texts["end_text"], 
             font_size=40, 
@@ -330,7 +330,7 @@ class ProducerConsumerBase(Scene):
 
 
 class ProducerConsumerSimple(ProducerConsumerBase):
-    """Video render için basit versiyon"""
+    """Simple version for video rendering"""
     
     def __init__(self, language="tr", **kwargs):
         super().__init__(language=language, **kwargs)

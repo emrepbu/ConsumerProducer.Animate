@@ -34,7 +34,7 @@ read -p "Enter your choice / Seçiminizi girin (1-2): " choice
 case $choice in
     1)
         echo "Rendering as high quality MP4 video (1080p60)..."
-        # Create temporary Python file with language parameter
+        # Create temporary Python file with selected language parameter
         cat > temp_render.py << EOF
 from producer_consumer_animation import ProducerConsumerSimple
 
@@ -51,7 +51,7 @@ EOF
         ;;
     2)
         echo "Rendering as high quality GIF (1080p30)..."
-        # Create temporary Python file with language parameter
+        # Create temporary Python file with selected language parameter
         cat > temp_render.py << EOF
 from producer_consumer_animation import ProducerConsumerSimple
 
