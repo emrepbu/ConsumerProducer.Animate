@@ -1,0 +1,3 @@
+[submodule "ManimML"]
+	path = ManimML
+	url = https://github.com/helblazer811/ManimML.git

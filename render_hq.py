@@ -15,7 +15,7 @@ from manim import *
 # Run the scene
 if __name__ == "__main__":
     # Import the scene class
-    from producer_consumer_animation import ProducerConsumerSimple
+    from producer_consumer_animation import ProducerConsumer
     
     # Configure for high quality rendering (1080p60)
     config.quality = "high_quality"
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     language = "tr"  # Change to "en" for English version
     
     # Create and render the scene
-    scene = ProducerConsumerSimple(language=language)
+    scene = ProducerConsumer(language=language)
     scene.render()
     
     print(f"\nRendering complete!")

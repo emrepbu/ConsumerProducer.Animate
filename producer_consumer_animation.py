@@ -329,8 +329,8 @@ class ProducerConsumerBase(Scene):
         self.wait(2)
 
 
-class ProducerConsumerSimple(ProducerConsumerBase):
-    """Simple version for video rendering"""
+class ProducerConsumer(ProducerConsumerBase):
+    """Producer-Consumer animation for video rendering"""
     
     def __init__(self, language="tr", **kwargs):
         super().__init__(language=language, **kwargs)
