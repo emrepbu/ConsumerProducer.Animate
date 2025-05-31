@@ -67,51 +67,28 @@ Animation flow:
 
 ### 📹 Generated Videos
 
-The project includes the following rendered videos:
-
-#### 1. Producer-Consumer Animation
+The project includes the following rendered videos (English versions):
 
 <table>
   <tr>
     <td align="center">
-      <strong>🇬🇧 English Version</strong><br>
+      <strong>Producer-Consumer Animation</strong><br>
       <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/producer-consumer-en-preview.png" width="400" alt="Producer-Consumer English">
+        <img src="https://user-images.githubusercontent.com/placeholder/producer-consumer-en-preview.png" width="400" alt="Producer-Consumer Animation">
       </a><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">Watch Video</a>
+      <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">▶️ Watch Video</a>
     </td>
     <td align="center">
-      <strong>🇹🇷 Turkish Version</strong><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/producer-consumer-tr-preview.png" width="400" alt="Producer-Consumer Turkish">
-      </a><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">Watch Video</a>
-    </td>
-  </tr>
-</table>
-
-#### 2. Neural Producer-Consumer Animation
-
-<table>
-  <tr>
-    <td align="center">
-      <strong>🇬🇧 English Version</strong><br>
+      <strong>Neural Producer-Consumer Animation</strong><br>
       <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/neural-producer-consumer-en-preview.png" width="400" alt="Neural Producer-Consumer English">
+        <img src="https://user-images.githubusercontent.com/placeholder/neural-producer-consumer-en-preview.png" width="400" alt="Neural Producer-Consumer Animation">
       </a><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">Watch Video</a>
-    </td>
-    <td align="center">
-      <strong>🇹🇷 Turkish Version</strong><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/neural-producer-consumer-tr-preview.png" width="400" alt="Neural Producer-Consumer Turkish">
-      </a><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">Watch Video</a>
+      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">▶️ Watch Video</a>
     </td>
   </tr>
 </table>
 
-All videos are rendered in 1080p 60fps quality.
+All videos are rendered in 1080p 60fps quality. Turkish versions are also available.
 
 ### 🏷️ Keywords
 
@@ -178,51 +155,28 @@ Animasyon akışı:
 
 ### 📹 Oluşturulan Videolar
 
-Proje kapsamında aşağıdaki videolar oluşturulmuştur:
-
-#### 1. Producer-Consumer Animasyonu
+Proje kapsamında aşağıdaki videolar oluşturulmuştur (Türkçe versiyonlar):
 
 <table>
   <tr>
     <td align="center">
-      <strong>🇬🇧 İngilizce Versiyon</strong><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/producer-consumer-en-preview.png" width="400" alt="Producer-Consumer İngilizce">
-      </a><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">Videoyu İzle</a>
-    </td>
-    <td align="center">
-      <strong>🇹🇷 Türkçe Versiyon</strong><br>
+      <strong>Producer-Consumer Animasyonu</strong><br>
       <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/producer-consumer-tr-preview.png" width="400" alt="Producer-Consumer Türkçe">
+        <img src="https://user-images.githubusercontent.com/placeholder/producer-consumer-tr-preview.png" width="400" alt="Producer-Consumer Animasyonu">
       </a><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">Videoyu İzle</a>
-    </td>
-  </tr>
-</table>
-
-#### 2. Neural Producer-Consumer Animasyonu
-
-<table>
-  <tr>
-    <td align="center">
-      <strong>🇬🇧 İngilizce Versiyon</strong><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/neural-producer-consumer-en-preview.png" width="400" alt="Neural Producer-Consumer İngilizce">
-      </a><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">Videoyu İzle</a>
+      <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">▶️ Videoyu İzle</a>
     </td>
     <td align="center">
-      <strong>🇹🇷 Türkçe Versiyon</strong><br>
+      <strong>Neural Producer-Consumer Animasyonu</strong><br>
       <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/neural-producer-consumer-tr-preview.png" width="400" alt="Neural Producer-Consumer Türkçe">
+        <img src="https://user-images.githubusercontent.com/placeholder/neural-producer-consumer-tr-preview.png" width="400" alt="Neural Producer-Consumer Animasyonu">
       </a><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">Videoyu İzle</a>
+      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">▶️ Videoyu İzle</a>
     </td>
   </tr>
 </table>
 
-Tüm videolar 1080p 60fps kalitesinde render edilmiştir.
+Tüm videolar 1080p 60fps kalitesinde render edilmiştir. İngilizce versiyonlar da mevcuttur.
 
 ### 🏷️ Anahtar Kelimeler
 
