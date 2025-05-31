@@ -70,12 +70,46 @@ Animation flow:
 The project includes the following rendered videos:
 
 #### 1. Producer-Consumer Animation
-- **English Version**: `media/videos/temp_render/1080p60/ProducerConsumer_en.mp4`
-- **Turkish Version**: `media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4`
+
+<table>
+  <tr>
+    <td align="center">
+      <strong>🇬🇧 English Version</strong><br>
+      <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">
+        <img src="https://user-images.githubusercontent.com/placeholder/producer-consumer-en-preview.png" width="400" alt="Producer-Consumer English">
+      </a><br>
+      <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">Watch Video</a>
+    </td>
+    <td align="center">
+      <strong>🇹🇷 Turkish Version</strong><br>
+      <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">
+        <img src="https://user-images.githubusercontent.com/placeholder/producer-consumer-tr-preview.png" width="400" alt="Producer-Consumer Turkish">
+      </a><br>
+      <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">Watch Video</a>
+    </td>
+  </tr>
+</table>
 
 #### 2. Neural Producer-Consumer Animation
-- **English Version**: `media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4`
-- **Turkish Version**: `media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4`
+
+<table>
+  <tr>
+    <td align="center">
+      <strong>🇬🇧 English Version</strong><br>
+      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">
+        <img src="https://user-images.githubusercontent.com/placeholder/neural-producer-consumer-en-preview.png" width="400" alt="Neural Producer-Consumer English">
+      </a><br>
+      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">Watch Video</a>
+    </td>
+    <td align="center">
+      <strong>🇹🇷 Turkish Version</strong><br>
+      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">
+        <img src="https://user-images.githubusercontent.com/placeholder/neural-producer-consumer-tr-preview.png" width="400" alt="Neural Producer-Consumer Turkish">
+      </a><br>
+      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">Watch Video</a>
+    </td>
+  </tr>
+</table>
 
 All videos are rendered in 1080p 60fps quality.
 
