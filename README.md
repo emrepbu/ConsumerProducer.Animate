@@ -57,3 +57,17 @@ Animasyon akışı:
 - Consumer buffer'dan veri alır ve işler
 - Buffer boşsa Consumer bekler (WAIT)
 
+## Oluşturulan Videolar
+
+Proje kapsamında aşağıdaki videolar oluşturulmuştur:
+
+### 1. Producer-Consumer Animasyonu
+- **Türkçe Versiyon**: `media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4`
+- **İngilizce Versiyon**: `media/videos/temp_render/1080p60/ProducerConsumer_en.mp4`
+
+### 2. Neural Producer-Consumer Animasyonu
+- **Türkçe Versiyon**: `media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4`
+- **İngilizce Versiyon**: `media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4`
+
+Bu videolar 1080p 60fps kalitesinde render edilmiştir ve hem Türkçe hem de İngilizce versiyonları mevcuttur.
+

@@ -14,7 +14,7 @@ class ProducerConsumerBase(Scene):
         """Set up text translations based on language"""
         if self.language == "tr":
             self.texts = {
-                "title": "Üretici-Tüketici Problemi",
+                "title": "Üretici-Tüketici Mekanizması",
                 "producer": "Üretici",
                 "consumer": "Tüketici",
                 "buffer": "Tampon",
@@ -24,13 +24,11 @@ class ProducerConsumerBase(Scene):
                 "consuming": "Tüketiliyor...",
                 "waiting": "Bekliyor...",
                 "cycle": "Döngü {}/8",
-                "producer_alg": r"\textbf{Üretici Algoritması}",
-                "consumer_alg": r"\textbf{Tüketici Algoritması}",
-                "end_text": "Simülasyon Tamamlandı!"
+                "end_text": "Döngü Tamamlandı!"
             }
         else:
             self.texts = {
-                "title": "Producer-Consumer Problem",
+                "title": "Producer-Consumer Mechanism",
                 "producer": "Producer",
                 "consumer": "Consumer", 
                 "buffer": "Buffer",
@@ -40,9 +38,7 @@ class ProducerConsumerBase(Scene):
                 "consuming": "Consuming...",
                 "waiting": "Waiting...",
                 "cycle": "Cycle {}/8",
-                "producer_alg": r"\textbf{Producer Algorithm}",
-                "consumer_alg": r"\textbf{Consumer Algorithm}",
-                "end_text": "Simulation Complete!"
+                "end_text": "Cycle Complete!"
             }
     
     def construct(self):
@@ -129,12 +125,22 @@ class ProducerConsumerBase(Scene):
         consumer_group = VGroup(consumer_text, consumer_box).arrange(DOWN, buff=0.2)
         consumer_group.move_to(RIGHT * 4.5 + UP * main_y)
         
-        # Position all elements
+        # Position all elements - create sequentially with smooth animations
         self.play(
             Create(producer_group),
+            run_time=1.5
+        )
+        self.wait(0.3)
+        
+        self.play(
             Create(buffer_group),
-            Create(consumer_group),
             Write(buffer_info),
+            run_time=1.5
+        )
+        self.wait(0.3)
+        
+        self.play(
+            Create(consumer_group),
             run_time=1.5
         )
         self.wait(0.5)
@@ -161,55 +167,6 @@ class ProducerConsumerBase(Scene):
         )
         
         self.play(Create(arrow_p_to_b), Create(arrow_b_to_c))
-        
-        # Algorithm descriptions - BOTTOM SECTION
-        # Producer algorithm
-        producer_algo_title = Tex(self.texts["producer_alg"], font_size=20, color=BLUE)
-        producer_algo_code = MathTex(
-            r"\begin{array}{l}" + 
-            r"\textbf{ALGORITHM Producer} \\" +
-            r"\quad \textbf{WHILE } \text{system is running} \textbf{ DO} \\" +
-            r"\quad \quad \text{data} \leftarrow \text{generateNewData()} \\" +
-            r"\quad \quad \textbf{IF } \text{buffer has space} \textbf{ THEN} \\" +
-            r"\quad \quad \quad \text{add data to buffer} \\" +
-            r"\quad \quad \textbf{ELSE} \\" +
-            r"\quad \quad \quad \text{wait until space becomes available} \\" +
-            r"\quad \quad \textbf{END IF} \\" +
-            r"\quad \textbf{END WHILE} \\" +
-            r"\textbf{END ALGORITHM}" +
-            r"\end{array}",
-            font_size=12,
-            color=BLUE_B
-        )
-        producer_algo = VGroup(producer_algo_title, producer_algo_code).arrange(DOWN, buff=0.15)
-        producer_algo.move_to(LEFT * 4 + DOWN * 2.8)
-        
-        # Consumer algorithm
-        consumer_algo_title = Tex(self.texts["consumer_alg"], font_size=20, color=RED)
-        consumer_algo_code = MathTex(
-            r"\begin{array}{l}" +
-            r"\textbf{ALGORITHM Consumer} \\" +
-            r"\quad \textbf{WHILE } \text{system is running} \textbf{ DO} \\" +
-            r"\quad \quad \textbf{IF } \text{buffer has data} \textbf{ THEN} \\" +
-            r"\quad \quad \quad \text{data} \leftarrow \text{get data from buffer} \\" +
-            r"\quad \quad \quad \text{process(data)} \\" +
-            r"\quad \quad \textbf{ELSE} \\" +
-            r"\quad \quad \quad \text{wait until data becomes available} \\" +
-            r"\quad \quad \textbf{END IF} \\" +
-            r"\quad \textbf{END WHILE} \\" +
-            r"\textbf{END ALGORITHM}" +
-            r"\end{array}",
-            font_size=12,
-            color=RED_B
-        )
-        consumer_algo = VGroup(consumer_algo_title, consumer_algo_code).arrange(DOWN, buff=0.15)
-        consumer_algo.move_to(RIGHT * 4 + DOWN * 2.8)
-        
-        self.play(
-            Write(producer_algo),
-            Write(consumer_algo),
-            run_time=2
-        )
         self.wait(1)
         
         # Simulation state
@@ -225,14 +182,14 @@ class ProducerConsumerBase(Scene):
         
         # Run the simulation
         for cycle in range(8):
-            # Cycle counter - center, above algorithms
+            # Cycle counter - center bottom
             cycle_text = Text(
                 self.texts["cycle"].format(cycle + 1), 
                 font_size=28, 
                 weight=BOLD, 
                 color=GOLD
             )
-            cycle_text.move_to(DOWN * 3.1)
+            cycle_text.to_edge(DOWN, buff=0.5)
             self.play(Write(cycle_text), run_time=0.5)
             
             # Producer produces
@@ -324,7 +281,8 @@ class ProducerConsumerBase(Scene):
             font_size=40, 
             color=GOLD, 
             weight=BOLD
-        ).move_to(DOWN * 1.8)
+        )
+        end_text.to_edge(DOWN, buff=1)
         self.play(Write(end_text))
         self.wait(2)
 
