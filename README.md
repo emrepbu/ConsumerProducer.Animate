@@ -74,16 +74,16 @@ The project includes the following rendered videos (English versions):
     <td align="center">
       <strong>Producer-Consumer Animation</strong><br>
       <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/producer-consumer-en-preview.png" width="400" alt="Producer-Consumer Animation">
+        <img src="https://github.com/user-attachments/assets/e307194b-9e8f-42e2-a1cd-71c9e1798adf" width="400" alt="Producer-Consumer Animation">
       </a><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">▶️ Watch Video</a>
+      <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">Go Video</a>
     </td>
     <td align="center">
       <strong>Neural Producer-Consumer Animation</strong><br>
       <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/neural-producer-consumer-en-preview.png" width="400" alt="Neural Producer-Consumer Animation">
+        <img src="https://github.com/user-attachments/assets/b9f2d98c-350a-4687-a6de-48ec8b9779f1" width="400" alt="Neural Producer-Consumer Animation">
       </a><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">▶️ Watch Video</a>
+      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">Go Video</a>
     </td>
   </tr>
 </table>
@@ -162,16 +162,16 @@ Proje kapsamında aşağıdaki videolar oluşturulmuştur (Türkçe versiyonlar)
     <td align="center">
       <strong>Producer-Consumer Animasyonu</strong><br>
       <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/producer-consumer-tr-preview.png" width="400" alt="Producer-Consumer Animasyonu">
+        <img src="https://github.com/user-attachments/assets/503493ed-06ce-4421-89e9-033266cfdd76" width="400" alt="Producer-Consumer Animasyonu">
       </a><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">▶️ Videoyu İzle</a>
+      <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">Videoya Git</a>
     </td>
     <td align="center">
       <strong>Neural Producer-Consumer Animasyonu</strong><br>
       <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">
-        <img src="https://user-images.githubusercontent.com/placeholder/neural-producer-consumer-tr-preview.png" width="400" alt="Neural Producer-Consumer Animasyonu">
+        <img src="https://github.com/user-attachments/assets/d8c227e5-5277-4030-a9e3-c92acc57b1fd" width="400" alt="Neural Producer-Consumer Animasyonu">
       </a><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">▶️ Videoyu İzle</a>
+      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">Videoya Git</a>
     </td>
   </tr>
 </table>
