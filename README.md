@@ -75,11 +75,9 @@ The project includes the following rendered videos (English versions):
 
 | Animation | Preview | Download |
 |-----------|---------|----------|
-| **Producer-Consumer** | <video src="https://github.com/user-attachments/assets/4b5e8c9e-2f8e-4bcd-ab93-60a1b8f0c2b1" width="300"></video> | [Download MP4](media/videos/producer_consumer_animation/1080p60/ProducerConsumer_en.mp4) |
-| **Neural Producer-Consumer** | <video src="https://github.com/user-attachments/assets/1d8e9c35-6b68-4bb5-b64f-2e0f7e36cc25" width="300"></video> | [Download MP4](media/videos/neural_producer_consumer/1080p60/NeuralProducerConsumer_en.mp4) |
-| **CPU Clock Signal** | <video src="https://github.com/user-attachments/assets/cpu-clock-video.mp4" width="300"></video> | [Download MP4](media/videos/cpu_clock_animation/1080p60/CPUClock_en.mp4) |
-
-All videos are rendered in 1080p 60fps quality. Turkish versions are also available.
+| **Producer-Consumer** | <video src="https://github.com/user-attachments/assets/e307194b-9e8f-42e2-a1cd-71c9e1798adf" width="300"></video> | [Download MP4](media/videos/temp_render/1080p60/ProducerConsumer_en.mp4) |
+| **Neural Producer-Consumer** | <video src="https://github.com/user-attachments/assets/b9f2d98c-350a-4687-a6de-48ec8b9779f1" width="300"></video> | [Download MP4](media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4) |
+| **CPU Clock Signal** | <video src="https://github.com/user-attachments/assets/03eb7b85-e4eb-4331-8a9a-9ca14c4f5ca7" width="300"></video> | [Download MP4](media/videos/temp_render/1080p60/CPUClock_en.mp4) |
 
 ### Keywords
 
@@ -154,11 +152,9 @@ Proje kapsamında aşağıdaki videolar oluşturulmuştur (Türkçe versiyonlar)
 
 | Animasyon | Önizleme | İndir |
 |-----------|----------|--------|
-| **Producer-Consumer** | <video src="https://github.com/user-attachments/assets/1ee88769-8af8-4c7f-a318-e2f83f93e53f" width="300"></video> | [MP4 İndir](media/videos/producer_consumer_animation/1080p60/ProducerConsumer_tr.mp4) |
-| **Neural Producer-Consumer** | <video src="https://github.com/user-attachments/assets/7dc2dd33-6d02-48ba-bb23-b1861e96e38d" width="300"></video> | [MP4 İndir](media/videos/neural_producer_consumer/1080p60/NeuralProducerConsumer_tr.mp4) |
-| **CPU Saat Sinyali** | <video src="https://github.com/user-attachments/assets/cpu-clock-video-tr.mp4" width="300"></video> | [MP4 İndir](media/videos/cpu_clock_animation/1080p60/CPUClock_tr.mp4) |
-
-Tüm videolar 1080p 60fps kalitesinde render edilmiştir. İngilizce versiyonlar da mevcuttur.
+| **Producer-Consumer** | <video src="https://github.com/user-attachments/assets/503493ed-06ce-4421-89e9-033266cfdd76" width="300"></video> | [MP4 İndir](media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4) |
+| **Neural Producer-Consumer** | <video src="https://github.com/user-attachments/assets/d8c227e5-5277-4030-a9e3-c92acc57b1fd" width="300"></video> | [MP4 İndir](media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4) |
+| **CPU Saat Sinyali** | <video src="https://github.com/user-attachments/assets/dbd40c84-5072-4f10-87c3-f8abf7f27da2" width="300"></video> | [MP4 İndir](media/videos/temp_render/1080p60/CPUClock_tr.mp4) |
 
 ### Anahtar Kelimeler
 
@@ -179,3 +175,6 @@ If you find this project helpful, please consider giving it a star!
 ## Contact
 
 For questions or feedback, please open an issue on GitHub.
+
+
+
