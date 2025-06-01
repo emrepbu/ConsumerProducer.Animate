@@ -75,9 +75,9 @@ The project includes the following rendered videos (English versions):
 
 | Animation | Preview | Download |
 |-----------|---------|----------|
-| **Producer-Consumer** | <video src="https://github.com/user-attachments/assets/4b5e8c9e-2f8e-4bcd-ab93-60a1b8f0c2b1" width="300"></video> | [Download MP4](media/videos/producer_consumer_animation/1080p60/ProducerConsumer_en.mp4) |
-| **Neural Producer-Consumer** | <video src="https://github.com/user-attachments/assets/1d8e9c35-6b68-4bb5-b64f-2e0f7e36cc25" width="300"></video> | [Download MP4](media/videos/neural_producer_consumer/1080p60/NeuralProducerConsumer_en.mp4) |
-| **CPU Clock Signal** | <video src="https://github.com/user-attachments/assets/cpu-clock-video.mp4" width="300"></video> | [Download MP4](media/videos/cpu_clock_animation/1080p60/CPUClock_en.mp4) |
+| **Producer-Consumer** | <video src="https://github.com/user-attachments/assets/4b5e8c9e-2f8e-4bcd-ab93-60a1b8f0c2b1" width="300"></video> | [Download MP4](media/videos/temp_render/1080p60/ProducerConsumer_en.mp4) |
+| **Neural Producer-Consumer** | <video src="https://github.com/user-attachments/assets/1d8e9c35-6b68-4bb5-b64f-2e0f7e36cc25" width="300"></video> | [Download MP4](media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4) |
+| **CPU Clock Signal** | <video src="https://github.com/user-attachments/assets/cpu-clock-video.mp4" width="300"></video> | [Download MP4](media/videos/temp_render/1080p60/CPUClock_en.mp4) |
 
 All videos are rendered in 1080p 60fps quality. Turkish versions are also available.
 
