@@ -10,7 +10,6 @@ except ImportError:
 import random
 import numpy as np
 
-# Configure for better visual quality
 config.background_color = "#0f0f0f"
 
 
@@ -61,52 +60,44 @@ class NeuralProducerConsumerBase(Scene):
     
     def create_neural_network_fallback(self):
         """Create a fallback neural network visualization when manim-ml is not available"""
-        # Input layer (Producers) - 4 nodes
         producer_nodes = []
         for i in range(4):
             node = Circle(radius=0.3, color=BLUE, fill_opacity=0.8)
             node.move_to(LEFT * 5 + UP * (1.5 - i * 1))
             producer_nodes.append(node)
         
-        # Hidden layer (Buffer) - 4 nodes
         buffer_nodes = []
         for i in range(4):
             node = Circle(radius=0.25, color=GREEN, fill_opacity=0.6)
             node.move_to(UP * (1.5 - i * 1))
             buffer_nodes.append(node)
         
-        # Output layer (Consumers) - 3 nodes
         consumer_nodes = []
         for i in range(3):
             node = Circle(radius=0.3, color=RED, fill_opacity=0.8)
             node.move_to(RIGHT * 5 + UP * (1 - i * 1))
             consumer_nodes.append(node)
         
-        # Create connections
         connections = []
         
-        # Producer to Buffer connections
         for p_node in producer_nodes:
             for b_node in buffer_nodes:
                 line = Line(p_node.get_center(), b_node.get_center(), 
                            color=GRAY, stroke_width=1, stroke_opacity=0.3)
                 connections.append(line)
         
-        # Buffer to Consumer connections
         for b_node in buffer_nodes:
             for c_node in consumer_nodes:
                 line = Line(b_node.get_center(), c_node.get_center(),
                            color=GRAY, stroke_width=1, stroke_opacity=0.3)
                 connections.append(line)
         
-        # Create garbage collector node
         garbage_collector = RoundedRectangle(
             width=2.5, height=1.5, corner_radius=0.2,
             color=DARK_GRAY, fill_color=DARK_GRAY, fill_opacity=0.7
         )
         garbage_collector.move_to(DOWN * 3)
         
-        # Trash icon inside garbage collector - use text instead of emoji
         trash_icon = Text("GC", font_size=30, color=WHITE, weight=BOLD)
         trash_icon.move_to(garbage_collector.get_center())
         garbage_group = VGroup(garbage_collector, trash_icon)
@@ -121,14 +112,11 @@ class NeuralProducerConsumerBase(Scene):
         return VGroup(packet, text)
     
     def construct(self):
-        # Set background color
         self.camera.background_color = "#0f0f0f"
         
-        # Main title
         title = Text(self.texts["neural_title"], font_size=40, weight=BOLD, color=WHITE)
         title.to_edge(UP, buff=0.3)
         
-        # Language indicator
         lang_text = "TR | Türkçe" if self.language == "tr" else "EN | English"
         lang_indicator = Text(lang_text, font_size=14, weight=BOLD, color=WHITE)
         lang_box = RoundedRectangle(
@@ -146,16 +134,12 @@ class NeuralProducerConsumerBase(Scene):
         self.play(Write(title), FadeIn(lang_group))
         self.wait(1)
         
-        # Create neural network structure
         if MANIM_ML_AVAILABLE:
-            # Use manim-ml if available
             try:
-                # Create layers - 4 producers, 4 buffers, 3 consumers
                 input_layer = FeedForwardLayer(4, rectangle_color=BLUE, rectangle_fill_color=BLUE)
                 hidden_layer = FeedForwardLayer(4, rectangle_color=GREEN, rectangle_fill_color=GREEN)
                 output_layer = FeedForwardLayer(3, rectangle_color=RED, rectangle_fill_color=RED)
                 
-                # Create neural network
                 nn = NeuralNetwork([input_layer, hidden_layer, output_layer], 
                                  layer_spacing=3)
                 nn.move_to(ORIGIN)
@@ -172,11 +156,9 @@ class NeuralProducerConsumerBase(Scene):
                 producer_nodes, buffer_nodes, consumer_nodes, connections, garbage_group = self.create_neural_network_fallback()
                 network_group = VGroup(*producer_nodes, *buffer_nodes, *consumer_nodes, *connections)
         else:
-            # Use fallback implementation
             producer_nodes, buffer_nodes, consumer_nodes, connections, garbage_group = self.create_neural_network_fallback()
             network_group = VGroup(*producer_nodes, *buffer_nodes, *consumer_nodes, *connections)
         
-        # Create garbage collector for ManimML case
         if MANIM_ML_AVAILABLE and 'garbage_group' not in locals():
             garbage_collector = RoundedRectangle(
                 width=2.5, height=1.5, corner_radius=0.2,
@@ -187,7 +169,6 @@ class NeuralProducerConsumerBase(Scene):
             trash_icon.move_to(garbage_collector.get_center())
             garbage_group = VGroup(garbage_collector, trash_icon)
         
-        # Layer labels
         producer_label = Text(self.texts["producers"], font_size=24, color=BLUE, weight=BOLD)
         producer_label.next_to(producer_nodes[0], LEFT, buff=0.5)
         
@@ -200,7 +181,6 @@ class NeuralProducerConsumerBase(Scene):
         garbage_label = Text(self.texts["garbage_collector"], font_size=20, color=DARK_GRAY, weight=BOLD)
         garbage_label.next_to(garbage_group, DOWN, buff=0.3)
         
-        # Create network
         self.play(
             Create(network_group),
             Write(producer_label),
@@ -212,23 +192,19 @@ class NeuralProducerConsumerBase(Scene):
         )
         self.wait(1)
         
-        # Buffer state tracking
-        buffer_states = [0] * len(buffer_nodes)  # 0 = empty, 1 = occupied
-        buffer_capacity = 1  # Each buffer node can hold only 1 item
+        buffer_states = [0] * len(buffer_nodes)
+        buffer_capacity = 1
         buffer_counts = [0] * len(buffer_nodes)
         
-        # Data flow simulation
         active_packets = []
-        buffer_visual_packets = {}  # Dictionary to store visual packets in each buffer
-        dropped_count = 0  # Count of dropped packets
-        dropped_before_upgrade = 0  # Count before buffer upgrade
-        garbage_collector = garbage_group[0]  # Get the garbage collector shape
+        buffer_visual_packets = {}
+        dropped_count = 0
+        dropped_before_upgrade = 0
+        garbage_collector = garbage_group[0]
         
-        # Track if we've added the new buffer
         new_buffer_added = False
         
         for cycle in range(10):
-            # Cycle indicator
             cycle_text = Text(
                 self.texts["cycle"].format(cycle + 1),
                 font_size=24,
@@ -238,38 +214,30 @@ class NeuralProducerConsumerBase(Scene):
             cycle_text.to_edge(DOWN, buff=0.3)
             self.play(Write(cycle_text), run_time=0.3)
             
-            # Prepare concurrent animations
             animations = []
             
-            # Phase 1: Select producers and consumers for this cycle
             active_producers = random.sample(range(len(producer_nodes)), k=random.randint(2, 4))
             active_consumers = []
             
-            # Randomly activate consumers if there are packets
-            if active_packets and random.random() > 0.3:  # 70% chance consumers are active
+            if active_packets and random.random() > 0.3:
                 active_consumers = random.sample(range(len(consumer_nodes)), 
                                                k=min(len(active_packets), random.randint(1, 3)))
             
-            # Create producer animations
             producer_packets = []
             for p_idx in active_producers:
-                # Create data packet
                 data_value = random.randint(10, 99)
                 packet = self.create_data_packet(data_value)
                 packet.move_to(producer_nodes[p_idx].get_center())
                 producer_packets.append((packet, p_idx, data_value))
                 
-                # Add creation animation
                 animations.append(Create(packet))
                 animations.append(producer_nodes[p_idx].animate.set_fill(BLUE, opacity=1))
             
-            # Create consumer animations
             packets_to_consume = []
             for c_idx in active_consumers:
                 if not active_packets:
                     break
                     
-                # Find available packets
                 available_packets = [(i, packet, b_idx, value) for i, (packet, b_idx, value) in enumerate(active_packets)
                                    if buffer_counts[b_idx] > 0]
                 
@@ -277,97 +245,75 @@ class NeuralProducerConsumerBase(Scene):
                     packet_idx, packet, b_idx, value = random.choice(available_packets)
                     packets_to_consume.append((c_idx, packet_idx, packet, b_idx, value))
                     
-                    # Add consumer highlight animation
                     animations.append(consumer_nodes[c_idx].animate.set_fill(RED, opacity=1))
             
-            # Play all highlight animations together
             if animations:
                 self.play(*animations, run_time=0.3)
             
-            # Now handle data movement concurrently
             movement_animations = []
             
-            # Producer to buffer movements
             for packet, p_idx, value in producer_packets:
-                # Find available buffer nodes
                 available_buffers = [i for i, count in enumerate(buffer_counts) 
                                    if count < buffer_capacity]
                 
                 if available_buffers:
-                    # Choose random available buffer
                     b_idx = random.choice(available_buffers)
                     
-                    # Calculate position for packet in buffer
                     if b_idx not in buffer_visual_packets:
                         buffer_visual_packets[b_idx] = []
                     
                     target_pos = buffer_nodes[b_idx].get_center()
                     
-                    # Add packet movement animation
                     movement_animations.append(packet.animate.scale(0.7).move_to(target_pos))
                     
-                    # Update buffer state (will be done after animation)
                     buffer_counts[b_idx] += 1
                     active_packets.append((packet, b_idx, value))
                     buffer_visual_packets[b_idx].append(packet)
                 else:
-                    # No available buffer - send to garbage collector
                     movement_animations.append(packet.animate.move_to(garbage_collector.get_center()))
                     dropped_count += 1
             
-            # Consumer to buffer movements
             packets_to_remove = []
             for c_idx, packet_idx, packet, b_idx, value in packets_to_consume:
-                # Add packet movement animation
                 movement_animations.append(
                     packet.animate.scale(1/0.7).move_to(consumer_nodes[c_idx].get_center())
                 )
                 
-                # Update buffer state
                 buffer_counts[b_idx] -= 1
                 packets_to_remove.append(packet_idx)
                 
-                # Remove from visual packets
                 if packet in buffer_visual_packets[b_idx]:
                     buffer_visual_packets[b_idx].remove(packet)
             
-            # Play all movements concurrently
             if movement_animations:
                 self.play(*movement_animations, run_time=0.7)
             
-            # Clean up consumed packets and dropped packets
             fade_animations = []
             
-            # Fade out consumed packets
             for c_idx, packet_idx, packet, b_idx, value in packets_to_consume:
                 fade_animations.append(FadeOut(packet))
             
-            # Fade out dropped packets
             for packet, p_idx, value in producer_packets:
                 available_buffers = [i for i, count in enumerate(buffer_counts) 
-                                   if count < buffer_capacity + 1]  # +1 because we already updated
+                                   if count < buffer_capacity + 1]
                 if not available_buffers:
                     fade_animations.append(FadeOut(packet))
             
-            # Remove consumed packets from active list
             for idx in sorted(packets_to_remove, reverse=True):
                 if idx < len(active_packets):
                     active_packets.pop(idx)
             
-            # Update buffer colors
             buffer_updates = []
             for i, node in enumerate(buffer_nodes):
                 new_opacity = 0.6 + 0.4 * buffer_counts[i]/buffer_capacity
                 buffer_updates.append(node.animate.set_fill(GREEN, opacity=new_opacity))
             
-            # Reset producer and consumer colors
             reset_animations = []
             for p_idx in active_producers:
                 reset_animations.append(producer_nodes[p_idx].animate.set_fill(BLUE, opacity=0.8))
             for c_idx in active_consumers:
                 reset_animations.append(consumer_nodes[c_idx].animate.set_fill(RED, opacity=0.8))
             
-            # Play all cleanup animations together
             all_cleanup = fade_animations + buffer_updates + reset_animations
             if all_cleanup:
                 self.play(*all_cleanup, run_time=0.3)
@@ -375,11 +321,9 @@ class NeuralProducerConsumerBase(Scene):
             
             self.play(FadeOut(cycle_text), run_time=0.3)
             
-            # Add new buffer after 5th cycle
-            if cycle == 4 and not new_buffer_added:  # After 5th cycle (0-indexed)
+            if cycle == 4 and not new_buffer_added:
                 self.wait(0.5)
                 
-                # Create announcement
                 upgrade_text = Text(
                     self.texts["system_upgraded"],
                     font_size=32,
@@ -388,26 +332,22 @@ class NeuralProducerConsumerBase(Scene):
                 )
                 upgrade_text.move_to(UP * 3.5)
                 
-                # Create new buffer node
                 new_buffer = Circle(radius=0.25, color=GREEN, fill_opacity=0.6)
-                new_buffer_pos = DOWN * 2.5  # Position it below other buffers
+                new_buffer_pos = DOWN * 2.5
                 new_buffer.move_to(new_buffer_pos)
                 
-                # Add connections from producers to new buffer
                 new_producer_connections = []
                 for p_node in producer_nodes:
                     line = Line(p_node.get_center(), new_buffer.get_center(), 
                                color=GRAY, stroke_width=1, stroke_opacity=0.3)
                     new_producer_connections.append(line)
                 
-                # Add connections from new buffer to consumers
                 new_consumer_connections = []
                 for c_node in consumer_nodes:
                     line = Line(new_buffer.get_center(), c_node.get_center(),
                                color=GRAY, stroke_width=1, stroke_opacity=0.3)
                     new_consumer_connections.append(line)
                 
-                # Animate the addition
                 self.play(
                     Write(upgrade_text),
                     Create(new_buffer),
@@ -416,7 +356,6 @@ class NeuralProducerConsumerBase(Scene):
                     run_time=2
                 )
                 
-                # Add "New Buffer Added" text
                 buffer_added_text = Text(
                     self.texts["buffer_added"],
                     font_size=24,
@@ -426,19 +365,16 @@ class NeuralProducerConsumerBase(Scene):
                 buffer_added_text.next_to(new_buffer, DOWN, buff=0.3)
                 self.play(Write(buffer_added_text), run_time=0.5)
                 
-                # Update buffer nodes list and connections
                 buffer_nodes.append(new_buffer)
                 connections.extend(new_producer_connections)
                 connections.extend(new_consumer_connections)
                 
-                # Initialize buffer state for new buffer
                 buffer_counts.append(0)
                 buffer_visual_packets[len(buffer_nodes) - 1] = []
                 
                 new_buffer_added = True
-                dropped_before_upgrade = dropped_count  # Save count before upgrade
+                dropped_before_upgrade = dropped_count
                 
-                # Update buffer label position to include new buffer
                 self.play(
                     buffer_label.animate.next_to(buffer_nodes[2], UP, buff=0.5),
                     run_time=0.5
@@ -453,7 +389,6 @@ class NeuralProducerConsumerBase(Scene):
             
             self.wait(0.5)
         
-        # Clean up remaining packets in buffers
         remaining_packets = []
         for b_idx, packets in buffer_visual_packets.items():
             remaining_packets.extend(packets)
@@ -461,9 +396,7 @@ class NeuralProducerConsumerBase(Scene):
         if remaining_packets:
             self.play(*[FadeOut(packet) for packet in remaining_packets], run_time=0.5)
         
-        # Show final statistics
         if dropped_count > 0:
-            # Show comparison if buffer was upgraded
             if new_buffer_added:
                 stats_before = Text(
                     f"İlk 5 döngü: {dropped_before_upgrade} paket düşürüldü" if self.language == "tr" 
@@ -505,7 +438,6 @@ class NeuralProducerConsumerBase(Scene):
                 self.wait(1)
                 self.play(FadeOut(stats_text))
         
-        # End animation
         end_text = Text(
             self.texts["end_text"],
             font_size=36,
@@ -514,7 +446,6 @@ class NeuralProducerConsumerBase(Scene):
         )
         end_text.to_edge(DOWN, buff=0.5)
         
-        # Final network pulse animation
         for node_group in [producer_nodes, buffer_nodes, consumer_nodes]:
             for node in node_group:
                 self.play(node.animate.scale(1.2).set_stroke(GOLD, width=3), run_time=0.1)

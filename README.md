@@ -1,6 +1,6 @@
 # Producer-Consumer Animation
 
-🎬 Animated visualization of Producer-Consumer problem using Manim. Features buffer management, synchronization, and neural network implementations. Educational tool for understanding concurrent programming concepts.
+Animated visualization of Producer-Consumer problem using Manim. Features buffer management, synchronization, and neural network implementations. Educational tool for understanding concurrent programming concepts.
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Manim](https://img.shields.io/badge/ManimCE-v0.17.0+-red.svg)](https://www.manim.community/)
@@ -10,16 +10,17 @@
 
 ## English
 
-### 🎯 Features
+### Features
 
 - Visual representation of Producer and Consumer components
 - Limited capacity buffer visualization
 - Data production and consumption animations
 - Waiting animations for full/empty buffer states
 - Neural network-based producer-consumer variant
+- CPU Clock signal visualization
 - Bilingual support (English/Turkish)
 
-### 📦 Installation
+### Installation
 
 1. Ensure Python 3.8+ is installed
 2. Install dependencies:
@@ -27,7 +28,7 @@
 pip install -r requirements.txt
 ```
 
-### 🚀 Usage
+### Usage
 
 Run the animation:
 
@@ -49,9 +50,12 @@ manim -pql --format=gif producer_consumer_animation.py ProducerConsumer
 
 # Neural network version
 manim -pqh neural_producer_consumer.py NeuralProducerConsumer
+
+# CPU Clock version
+manim -pqh cpu_clock_animation.py CPUClock
 ```
 
-### 🎥 Animation Details
+### Animation Details
 
 The animation includes these components:
 
@@ -65,49 +69,37 @@ Animation flow:
 - Consumer takes data from buffer and processes it
 - Consumer waits when buffer is empty
 
-### 📹 Generated Videos
+### Generated Videos
 
 The project includes the following rendered videos (English versions):
 
-<table>
-  <tr>
-    <td align="center">
-      <strong>Producer-Consumer Animation</strong><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">
-        <img src="https://github.com/user-attachments/assets/e307194b-9e8f-42e2-a1cd-71c9e1798adf" width="400" alt="Producer-Consumer Animation">
-      </a><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_en.mp4">Go Video</a>
-    </td>
-    <td align="center">
-      <strong>Neural Producer-Consumer Animation</strong><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">
-        <img src="https://github.com/user-attachments/assets/b9f2d98c-350a-4687-a6de-48ec8b9779f1" width="400" alt="Neural Producer-Consumer Animation">
-      </a><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_en.mp4">Go Video</a>
-    </td>
-  </tr>
-</table>
+| Animation | Preview | Download |
+|-----------|---------|----------|
+| **Producer-Consumer** | <video src="https://github.com/user-attachments/assets/4b5e8c9e-2f8e-4bcd-ab93-60a1b8f0c2b1" width="300"></video> | [Download MP4](media/videos/producer_consumer_animation/1080p60/ProducerConsumer_en.mp4) |
+| **Neural Producer-Consumer** | <video src="https://github.com/user-attachments/assets/1d8e9c35-6b68-4bb5-b64f-2e0f7e36cc25" width="300"></video> | [Download MP4](media/videos/neural_producer_consumer/1080p60/NeuralProducerConsumer_en.mp4) |
+| **CPU Clock Signal** | <video src="https://github.com/user-attachments/assets/cpu-clock-video.mp4" width="300"></video> | [Download MP4](media/videos/cpu_clock_animation/1080p60/CPUClock_en.mp4) |
 
 All videos are rendered in 1080p 60fps quality. Turkish versions are also available.
 
-### 🏷️ Keywords
+### Keywords
 
-`producer-consumer-problem` `manim-animation` `concurrent-programming` `thread-synchronization` `buffer-management` `educational-visualization` `computer-science-education` `operating-systems-concepts` `neural-network-visualization` `python-animation` `manim-community` `cs-education` `threading-visualization` `synchronization-primitives` `animated-algorithms`
+`producer-consumer-problem` `manim-animation` `concurrent-programming` `thread-synchronization` `buffer-management` `educational-visualization` `computer-science-education` `operating-systems-concepts` `neural-network-visualization` `cpu-clock-signal` `digital-signal-processing` `python-animation` `manim-community` `cs-education` `threading-visualization` `synchronization-primitives` `animated-algorithms`
 
 ---
 
 ## Türkçe
 
-### 🎯 Özellikler
+### Özellikler
 
 - Producer (Üretici) ve Consumer (Tüketici) bileşenlerinin görsel temsili
 - Sınırlı kapasiteli buffer (tampon bellek) gösterimi
 - Veri üretimi ve tüketimi animasyonu
 - Buffer dolu/boş durumlarında bekleme animasyonları
 - Sinir ağı tabanlı üretici-tüketici varyantı
+- CPU Saat sinyali görselleştirmesi
 - İki dil desteği (İngilizce/Türkçe)
 
-### 📦 Kurulum
+### Kurulum
 
 1. Python 3.8+ yüklü olduğundan emin olun
 2. Bağımlılıkları yükleyin:
@@ -115,7 +107,7 @@ All videos are rendered in 1080p 60fps quality. Turkish versions are also availa
 pip install -r requirements.txt
 ```
 
-### 🚀 Kullanım
+### Kullanım
 
 Animasyonu çalıştırmak için:
 
@@ -137,9 +129,12 @@ manim -pql --format=gif producer_consumer_animation.py ProducerConsumer
 
 # Sinir ağı versiyonu
 manim -pqh neural_producer_consumer.py NeuralProducerConsumer
+
+# CPU Saat versiyonu
+manim -pqh cpu_clock_animation.py CPUClock
 ```
 
-### 🎥 Animasyon Detayları
+### Animasyon Detayları
 
 Animasyon şu bileşenleri içerir:
 
@@ -153,47 +148,34 @@ Animasyon akışı:
 - Consumer buffer'dan veri alır ve işler
 - Buffer boşsa Consumer bekler
 
-### 📹 Oluşturulan Videolar
+### Oluşturulan Videolar
 
 Proje kapsamında aşağıdaki videolar oluşturulmuştur (Türkçe versiyonlar):
 
-<table>
-  <tr>
-    <td align="center">
-      <strong>Producer-Consumer Animasyonu</strong><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">
-        <img src="https://github.com/user-attachments/assets/503493ed-06ce-4421-89e9-033266cfdd76" width="400" alt="Producer-Consumer Animasyonu">
-      </a><br>
-      <a href="media/videos/temp_render/1080p60/ProducerConsumer_tr.mp4">Videoya Git</a>
-    </td>
-    <td align="center">
-      <strong>Neural Producer-Consumer Animasyonu</strong><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">
-        <img src="https://github.com/user-attachments/assets/d8c227e5-5277-4030-a9e3-c92acc57b1fd" width="400" alt="Neural Producer-Consumer Animasyonu">
-      </a><br>
-      <a href="media/videos/temp_render/1080p60/NeuralProducerConsumer_tr.mp4">Videoya Git</a>
-    </td>
-  </tr>
-</table>
+| Animasyon | Önizleme | İndir |
+|-----------|----------|--------|
+| **Producer-Consumer** | <video src="https://github.com/user-attachments/assets/1ee88769-8af8-4c7f-a318-e2f83f93e53f" width="300"></video> | [MP4 İndir](media/videos/producer_consumer_animation/1080p60/ProducerConsumer_tr.mp4) |
+| **Neural Producer-Consumer** | <video src="https://github.com/user-attachments/assets/7dc2dd33-6d02-48ba-bb23-b1861e96e38d" width="300"></video> | [MP4 İndir](media/videos/neural_producer_consumer/1080p60/NeuralProducerConsumer_tr.mp4) |
+| **CPU Saat Sinyali** | <video src="https://github.com/user-attachments/assets/cpu-clock-video-tr.mp4" width="300"></video> | [MP4 İndir](media/videos/cpu_clock_animation/1080p60/CPUClock_tr.mp4) |
 
 Tüm videolar 1080p 60fps kalitesinde render edilmiştir. İngilizce versiyonlar da mevcuttur.
 
-### 🏷️ Anahtar Kelimeler
+### Anahtar Kelimeler
 
-`üretici-tüketici-problemi` `manim-animasyon` `eşzamanlı-programlama` `thread-senkronizasyon` `tampon-yönetimi` `eğitsel-görselleştirme` `bilgisayar-bilimi-eğitimi` `işletim-sistemleri-kavramları` `sinir-ağı-görselleştirme` `python-animasyon` `manim-topluluğu` `cs-eğitim` `threading-görselleştirme` `senkronizasyon-primitifleri` `animasyonlu-algoritmalar`
+`üretici-tüketici-problemi` `manim-animasyon` `eşzamanlı-programlama` `thread-senkronizasyon` `tampon-yönetimi` `eğitsel-görselleştirme` `bilgisayar-bilimi-eğitimi` `işletim-sistemleri-kavramları` `sinir-ağı-görselleştirme` `cpu-saat-sinyali` `dijital-sinyal-işleme` `python-animasyon` `manim-topluluğu` `cs-eğitim` `threading-görselleştirme` `senkronizasyon-primitifleri` `animasyonlu-algoritmalar`
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## ⭐ Star History
+## Star History
 
 If you find this project helpful, please consider giving it a star!
 
-## 📧 Contact
+## Contact
 
 For questions or feedback, please open an issue on GitHub.

@@ -42,13 +42,11 @@ class ProducerConsumerBase(Scene):
             }
     
     def construct(self):
-        # Set background color
         self.camera.background_color = "#1a1a1a"
         
-        # Main title
+
         title = Text(self.texts["title"], font_size=48, weight=BOLD, color=WHITE).to_edge(UP, buff=0.3)
         
-        # Language indicator - top right corner
         lang_text = "TR | Türkçe" if self.language == "tr" else "EN | English"
         lang_indicator = Text(
             lang_text, 
@@ -74,10 +72,8 @@ class ProducerConsumerBase(Scene):
         )
         self.wait(0.5)
         
-        # Center Y position for main components
         main_y = 0.8
         
-        # Producer box - LEFT
         producer_box = RoundedRectangle(
             corner_radius=0.15, 
             width=3, 
@@ -91,7 +87,6 @@ class ProducerConsumerBase(Scene):
         producer_group = VGroup(producer_text, producer_box).arrange(DOWN, buff=0.2)
         producer_group.move_to(LEFT * 4.5 + UP * main_y)
         
-        # Buffer box - CENTER
         buffer_box = RoundedRectangle(
             corner_radius=0.15,
             width=3.5, 
@@ -105,13 +100,11 @@ class ProducerConsumerBase(Scene):
         buffer_size_text = Text(self.texts["buffer_size"].format(5), font_size=20, color=GRAY_B)
         buffer_current_text = Text(self.texts["current_size"].format(0), font_size=24, color=YELLOW, weight=BOLD)
         
-        # Buffer info outside the box
         buffer_info = VGroup(buffer_size_text, buffer_current_text).arrange(DOWN, buff=0.1)
         buffer_group = VGroup(buffer_text, buffer_box).arrange(DOWN, buff=0.2)
         buffer_group.move_to(UP * main_y)
         buffer_info.next_to(buffer_box, DOWN, buff=0.2)
         
-        # Consumer box - RIGHT
         consumer_box = RoundedRectangle(
             corner_radius=0.15,
             width=3, 
@@ -125,7 +118,6 @@ class ProducerConsumerBase(Scene):
         consumer_group = VGroup(consumer_text, consumer_box).arrange(DOWN, buff=0.2)
         consumer_group.move_to(RIGHT * 4.5 + UP * main_y)
         
-        # Position all elements - create sequentially with smooth animations
         self.play(
             Create(producer_group),
             run_time=1.5
@@ -145,7 +137,6 @@ class ProducerConsumerBase(Scene):
         )
         self.wait(0.5)
         
-        # Arrows - slightly below the boxes
         arrow_y_offset = -0.3
         arrow_p_to_b = Arrow(
             producer_box.get_right() + UP * arrow_y_offset, 
@@ -169,20 +160,16 @@ class ProducerConsumerBase(Scene):
         self.play(Create(arrow_p_to_b), Create(arrow_b_to_c))
         self.wait(1)
         
-        # Simulation state
         buffer_items = []
         max_buffer_size = 5
         
-        # Status texts - above the boxes
         producer_status = Text(self.texts["producing"], color=BLUE, font_size=28, weight=BOLD)
         producer_status.next_to(producer_group, UP, buff=0.3)
         
         consumer_status = Text(self.texts["waiting"], color=RED, font_size=28, weight=BOLD)
         consumer_status.next_to(consumer_group, UP, buff=0.3)
         
-        # Run the simulation
         for cycle in range(8):
-            # Cycle counter - center bottom
             cycle_text = Text(
                 self.texts["cycle"].format(cycle + 1), 
                 font_size=28, 
@@ -192,11 +179,9 @@ class ProducerConsumerBase(Scene):
             cycle_text.to_edge(DOWN, buff=0.5)
             self.play(Write(cycle_text), run_time=0.5)
             
-            # Producer produces
             if len(buffer_items) < max_buffer_size:
                 self.play(Write(producer_status), run_time=0.5)
                 
-                # Create data item
                 data_value = random.randint(1, 99)
                 data_item = Circle(radius=0.25, color=BLUE_C, fill_opacity=0.8, stroke_width=2)
                 data_text = Text(str(data_value), font_size=20, color=WHITE, weight=BOLD)
@@ -206,22 +191,19 @@ class ProducerConsumerBase(Scene):
                 
                 self.play(Create(data_group), run_time=0.4)
                 
-                # Move to buffer - proper positioning
-                rows = 2  # 2 rows
-                cols = 3  # 3 columns
+                rows = 2
+                cols = 3
                 index = len(buffer_items)
                 row = index // cols
                 col = index % cols
                 
-                # Grid position inside buffer
-                x_offset = (col - 1) * 0.7  # -0.7, 0, 0.7
-                y_offset = (0.5 - row) * 0.7  # 0.5, -0.2
+                x_offset = (col - 1) * 0.7
+                y_offset = (0.5 - row) * 0.7
                 
                 target_pos = buffer_box.get_center() + RIGHT * x_offset + UP * y_offset
                 self.play(data_group.animate.move_to(target_pos), run_time=0.6)
                 buffer_items.append(data_group)
                 
-                # Update buffer count
                 new_count_text = Text(
                     self.texts["current_size"].format(len(buffer_items)), 
                     font_size=24, 
@@ -233,25 +215,21 @@ class ProducerConsumerBase(Scene):
                 
                 self.play(FadeOut(producer_status), run_time=0.3)
             else:
-                # Buffer is full
                 wait_text = Text(self.texts["waiting"], color=ORANGE, font_size=28, weight=BOLD)
                 wait_text.next_to(producer_group, UP, buff=0.3)
                 self.play(Write(wait_text), run_time=0.5)
                 self.wait(0.5)
                 self.play(FadeOut(wait_text), run_time=0.3)
             
-            # Consumer consumes
             if len(buffer_items) > 0 and cycle % 2 == 1:
                 consumer_status_active = Text(self.texts["consuming"], color=RED, font_size=28, weight=BOLD)
                 consumer_status_active.next_to(consumer_group, UP, buff=0.3)
                 self.play(Write(consumer_status_active), run_time=0.5)
                 
-                # Take from buffer
                 data_to_consume = buffer_items.pop(0)
                 self.play(data_to_consume.animate.move_to(consumer_box.get_center()), run_time=0.6)
                 self.play(FadeOut(data_to_consume), run_time=0.4)
                 
-                # Rearrange remaining items
                 for i, item in enumerate(buffer_items):
                     row = i // cols
                     col = i % cols
@@ -260,7 +238,6 @@ class ProducerConsumerBase(Scene):
                     new_pos = buffer_box.get_center() + RIGHT * x_offset + UP * y_offset
                     self.play(item.animate.move_to(new_pos), run_time=0.3)
                 
-                # Update buffer count
                 new_count_text = Text(
                     self.texts["current_size"].format(len(buffer_items)), 
                     font_size=24, 
@@ -275,7 +252,6 @@ class ProducerConsumerBase(Scene):
             self.play(FadeOut(cycle_text), run_time=0.3)
             self.wait(0.3)
         
-        # End animation
         end_text = Text(
             self.texts["end_text"], 
             font_size=40, 

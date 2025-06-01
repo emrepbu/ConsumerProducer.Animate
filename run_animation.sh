@@ -16,11 +16,11 @@ else
 fi
 
 echo ""
-echo "Choose language / Dil seçin:"
+echo "Dil / Language:"
 echo "1. English"
 echo "2. Türkçe"
 
-read -p "Enter your choice / Seçiminizi girin (1-2): " lang_choice
+read -p "Seçim / Choice (1-2): " lang_choice
 
 case $lang_choice in
     1)
@@ -30,17 +30,19 @@ case $lang_choice in
         LANG="tr"
         ;;
     *)
-        echo "Invalid choice. Defaulting to Turkish / Geçersiz seçim. Varsayılan olarak Türkçe kullanılacak."
+        echo "Varsayılan: Türkçe"
         LANG="tr"
         ;;
 esac
 
 echo ""
-echo "Choose animation type / Animasyon türünü seçin:"
-echo "1. Producer-Consumer / Üretici-Tüketici"
-echo "2. Neural Network Style Multi-Producer-Consumer / Sinir Ağı Tarzı Çoklu Üretici-Tüketici"
+echo "Animasyon / Animation:"
+echo "1. Producer-Consumer"
+echo "2. Neural Network Multi-Producer"
+echo "3. CPU Clock"
+echo "4. All Animations (Both Languages)"
 
-read -p "Enter animation choice / Animasyon seçiminizi girin (1-2): " anim_choice
+read -p "Seçim / Choice (1-4): " anim_choice
 
 case $anim_choice in
     1)
@@ -51,25 +53,102 @@ case $anim_choice in
         ANIM_FILE="neural_producer_consumer.py"
         ANIM_CLASS="NeuralProducerConsumer"
         ;;
+    3)
+        ANIM_FILE="cpu_clock_animation.py"
+        ANIM_CLASS="CPUClock"
+        ;;
+    4)
+        ANIM_FILE="all"
+        ANIM_CLASS="all"
+        ;;
     *)
-        echo "Invalid choice. Defaulting to animation / Geçersiz seçim. Varsayılan animasyon kullanılacak."
+        echo "Varsayılan: Producer-Consumer"
         ANIM_FILE="producer_consumer_animation.py"
         ANIM_CLASS="ProducerConsumer"
         ;;
 esac
 
 echo ""
-echo "Choose rendering option / Render seçeneğini seçin:"
-echo "1. Render as high quality video (MP4 - 1080p60) / Yüksek kaliteli video (MP4 - 1080p60)"
-echo "2. Render as high quality GIF / Yüksek kaliteli GIF"
+echo "Format:"
+echo "1. MP4 (1080p60)"
+echo "2. GIF"
 
-read -p "Enter your choice / Seçiminizi girin (1-2): " choice
+read -p "Seçim / Choice (1-2): " choice
 
-case $choice in
-    1)
-        echo "Rendering as high quality MP4 video (1080p60)..."
-        # Create temporary Python file with selected language parameter
-        cat > temp_render.py << EOF
+if [ "$ANIM_FILE" = "all" ]; then
+    case $choice in
+        1)
+            echo "Rendering all animations as MP4..."
+            
+            # Array of animations: file_name class_name
+            animations=(
+                "producer_consumer_animation.py ProducerConsumer"
+                "neural_producer_consumer.py NeuralProducerConsumer"
+                "cpu_clock_animation.py CPUClock"
+            )
+            
+            for anim in "${animations[@]}"; do
+                read -r file class <<< "$anim"
+                
+                for lang in "en" "tr"; do
+                    echo "Rendering ${class}_${lang}.mp4..."
+                    cat > temp_render.py << EOF
+from ${file%.*} import ${class}
+
+class TempScene(${class}):
+    def __init__(self):
+        super().__init__(language="${lang}")
+
+if __name__ == "__main__":
+    scene = TempScene()
+    scene.render()
+EOF
+                    /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m manim -pqh --fps 60 temp_render.py TempScene -o "${class}_${lang}"
+                    rm temp_render.py
+                done
+            done
+            ;;
+        2)
+            echo "Rendering all animations as GIF..."
+            
+            # Array of animations: file_name class_name
+            animations=(
+                "producer_consumer_animation.py ProducerConsumer"
+                "neural_producer_consumer.py NeuralProducerConsumer"
+                "cpu_clock_animation.py CPUClock"
+            )
+            
+            for anim in "${animations[@]}"; do
+                read -r file class <<< "$anim"
+                
+                for lang in "en" "tr"; do
+                    echo "Rendering ${class}_${lang}.gif..."
+                    cat > temp_render.py << EOF
+from ${file%.*} import ${class}
+
+class TempScene(${class}):
+    def __init__(self):
+        super().__init__(language="${lang}")
+
+if __name__ == "__main__":
+    scene = TempScene()
+    scene.render()
+EOF
+                    /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m manim -pqh --format=gif --fps 30 temp_render.py TempScene -o "${class}_${lang}"
+                    rm temp_render.py
+                done
+            done
+            ;;
+        *)
+            echo "Geçersiz seçim!"
+            exit 1
+            ;;
+    esac
+else
+    case $choice in
+        1)
+            echo "Rendering MP4..."
+            cat > temp_render.py << EOF
 from ${ANIM_FILE%.*} import ${ANIM_CLASS}
 
 class TempScene(${ANIM_CLASS}):
@@ -80,13 +159,12 @@ if __name__ == "__main__":
     scene = TempScene()
     scene.render()
 EOF
-        /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m manim -pqh --fps 60 temp_render.py TempScene -o "${ANIM_CLASS}_${LANG}"
-        rm temp_render.py
-        ;;
-    2)
-        echo "Rendering as high quality GIF (1080p30)..."
-        # Create temporary Python file with selected language parameter
-        cat > temp_render.py << EOF
+            /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m manim -pqh --fps 60 temp_render.py TempScene -o "${ANIM_CLASS}_${LANG}"
+            rm temp_render.py
+            ;;
+        2)
+            echo "Rendering GIF..."
+            cat > temp_render.py << EOF
 from ${ANIM_FILE%.*} import ${ANIM_CLASS}
 
 class TempScene(${ANIM_CLASS}):
@@ -97,14 +175,15 @@ if __name__ == "__main__":
     scene = TempScene()
     scene.render()
 EOF
-        /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m manim -pqh --format=gif --fps 30 temp_render.py TempScene -o "${ANIM_CLASS}_${LANG}"
-        rm temp_render.py
-        ;;
-    *)
-        echo "Invalid choice. Please run the script again. / Geçersiz seçim. Lütfen scripti tekrar çalıştırın."
-        exit 1
-        ;;
-esac
+            /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 -m manim -pqh --format=gif --fps 30 temp_render.py TempScene -o "${ANIM_CLASS}_${LANG}"
+            rm temp_render.py
+            ;;
+        *)
+            echo "Geçersiz seçim!"
+            exit 1
+            ;;
+    esac
+fi
 
 echo ""
-echo "Animation complete! Check the 'media' folder for output files."
+echo "Tamamlandı! / Complete!"
